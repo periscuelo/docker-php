@@ -15,17 +15,26 @@ For a test, make a file named index.php and save in htdocs folder created before
 #### content of index.php
 `<?php phpinfo(); ?>`
 
+And you can *create and edit* too the php.ini as you need.
+
 Now you are ready for the next step.
 
 ## Usage
 
 ### MAC or Linux
 `$ docker container run -d -p 80:80 -p 443:443 -v $(pwd)/htdocs:/var/www/html periscuelo/php-apache-ssl`
+#### with php.ini
+`$ docker container run -d -p 80:80 -p 443:443 -v $(pwd)/htdocs:/var/www/html -v $(pwd)/php.ini:/usr/local/etc/php/php.ini periscuelo/php-apache-ssl`
 
 ### Windows PowerShell
 `$ docker container run -d -p 80:80 -p 443:443 -v ${pwd}/htdocs:/var/www/html periscuelo/php-apache-ssl`
+#### with php.ini
+`$ docker container run -d -p 80:80 -p 443:443 -v ${pwd}/htdocs:/var/www/html -v ${pwd}/php.ini:/usr/local/etc/php/php.ini periscuelo/php-apache-ssl`
 
 ### docker-compose
+
+#### The `php.ini` volume is necessary only if you want change something there.
+
 ```
 # docker-compose.yml
 version: '3'
@@ -38,6 +47,7 @@ services:
       - 443:443
     volumes:
       - ./htdocs:/var/www/html
+      - ./php.ini:/usr/local/etc/php/php.ini
 ```
 `$ docker-compose up -d`
 
