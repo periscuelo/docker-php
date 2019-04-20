@@ -8,3 +8,4 @@ services:
       - 443:443
     volumes:
       - ./htdocs:/var/www/html
+      - ./php.ini:/usr/local/etc/php/php.ini
