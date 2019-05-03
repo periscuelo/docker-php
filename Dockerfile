@@ -15,6 +15,9 @@ RUN requirements="nano cron mariadb-client libpng-dev libmcrypt-dev libmcrypt4 l
     && requirementsToRemove="libmcrypt-dev libcurl3-dev libxml2-dev libfreetype6-dev libjpeg62-turbo-dev" \
     && apt-get purge --auto-remove -y $requirementsToRemove
 
+ENV COMPOSER_HOME /composer
+ENV PATH /composer/vendor/bin:$PATH
+ENV COMPOSER_ALLOW_SUPERUSER 1
 RUN curl -s https://getcomposer.org/installer | php \
   && mv composer.phar /usr/local/bin/composer \
   && chmod +x /usr/local/bin/composer
