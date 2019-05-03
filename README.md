@@ -51,6 +51,25 @@ services:
 ```
 `$ docker-compose up -d`
 
+### PHP Composer
+You can use the `composer` too. For this, use the following command:
+
+`$ docker exec -it ID_OR_NAME_OF_YOUR_CONTAINER /bin/bash`
+
+You have to replace `ID_OR_NAME_OF_YOUR_CONTAINER` for  the respective Container ID or Container NAME.
+
+Ex: If my container id is f3c99c3239ex then, the command must be:
+
+`$ docker exec -it f3c99c3239ex  /bin/bash`
+
+Inside the terminal you can use the `composer` as you want.
+
+For exit of terminal after, the command must be:
+
+`$ exit`
+
+And you come out of container.
+
 # Enjoy
 
 You can access the server by https://localhost or http://localhost now!
