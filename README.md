@@ -13,7 +13,9 @@ Have a local folder named htdocs
 
 For a test, make a file named index.php and save in htdocs folder created before.
 #### content of index.php
-`<?php phpinfo(); ?>`
+```php
+<?php phpinfo(); ?>
+```
 
 And you can *create and edit* too the php.ini as you need.
 
@@ -25,15 +27,25 @@ Now you are ready for the next step.
 `$ docker container run -d -p 80:80 -p 443:443 -v $(pwd)/htdocs:/var/www/html periscuelo/php-apache-ssl`
 #### with php.ini
 `$ docker container run -d -p 80:80 -p 443:443 -v $(pwd)/htdocs:/var/www/html -v $(pwd)/php.ini:/usr/local/etc/php/php.ini periscuelo/php-apache-ssl`
+#### with vhost.conf
+`$ docker container run -d -p 80:80 -p 443:443 -v $(pwd)/htdocs:/var/www/html -v $(pwd)/vhost.conf:/etc/apache2/sites-available/000-default.conf periscuelo/php-apache-ssl`
+#### with both
+`$ docker container run -d -p 80:80 -p 443:443 -v $(pwd)/htdocs:/var/www/html -v $(pwd)/php.ini:/usr/local/etc/php/php.ini -v $(pwd)/vhost.conf:/etc/apache2/sites-available/000-default.conf periscuelo/php-apache-ssl`
 
 ### Windows PowerShell
 `$ docker container run -d -p 80:80 -p 443:443 -v ${pwd}/htdocs:/var/www/html periscuelo/php-apache-ssl`
 #### with php.ini
 `$ docker container run -d -p 80:80 -p 443:443 -v ${pwd}/htdocs:/var/www/html -v ${pwd}/php.ini:/usr/local/etc/php/php.ini periscuelo/php-apache-ssl`
+#### with vhost.conf
+`$ docker container run -d -p 80:80 -p 443:443 -v ${pwd}/htdocs:/var/www/html -v ${pwd}/vhost.conf:/etc/apache2/sites-available/000-default.conf periscuelo/php-apache-ssl`
+#### with both
+`$ docker container run -d -p 80:80 -p 443:443 -v ${pwd}/htdocs:/var/www/html -v ${pwd}/php.ini:/usr/local/etc/php/php.ini -v ${pwd}/vhost.conf:/etc/apache2/sites-available/000-default.conf periscuelo/php-apache-ssl`
+
 
 ### docker-compose
 
 #### The `php.ini` volume is necessary only if you want change something there.
+#### The `vhost.conf` volume is necessary only if you want change something there.
 
 ```
 # docker-compose.yml
@@ -48,6 +60,7 @@ services:
     volumes:
       - ./htdocs:/var/www/html
       - ./php.ini:/usr/local/etc/php/php.ini
+      - ./vhost.conf:/etc/apache2/sites-available/000-default.conf
 ```
 `$ docker-compose up -d`
 
