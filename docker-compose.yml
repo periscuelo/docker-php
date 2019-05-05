@@ -9,3 +9,4 @@ services:
     volumes:
       - ./htdocs:/var/www/html
       - ./php.ini:/usr/local/etc/php/php.ini
+      - ./vhost.conf:/etc/apache2/sites-available/000-default.conf
