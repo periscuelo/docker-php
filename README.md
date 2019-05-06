@@ -77,6 +77,12 @@ Ex: If my container id is f3c99c3239ex then, the command must be:
 
 Inside the terminal you can use the `composer` as you want.
 
+For example:
+
+`$ composer create-project phpmyadmin/phpmyadmin`
+
+You can use phpmyadmin to made changes in your MySQL Database.
+
 For exit of terminal after, the command must be:
 
 `$ exit`
