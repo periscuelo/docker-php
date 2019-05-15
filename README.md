@@ -2,8 +2,8 @@
 
 #### A simple docker configuration to use PHP with HTTPS for development
 
-This is a simple Dockerfile that uses the latest PHP-Apache image and creates a self
-signed certificate to enable the default SSL. This is suitable for development
+This is a simple Dockerfile that uses the latest PHP-Apache image and creates a self  
+signed certificate to enable the default SSL. This is suitable for development  
 and testing, not for production.
 
 ## Requiriments
@@ -17,8 +17,7 @@ For a test, make a file named index.php and save in htdocs folder created before
 <?php phpinfo(); ?>
 ```
 
-And you can *create and edit* too the php.ini as you need.
-
+And you can *create and edit* too the php.ini as you need.  
 Now you are ready for the next step.
 
 ## Usage
@@ -69,20 +68,17 @@ You can use the `composer` too. For this, use the following command:
 
 `$ docker exec -it ID_OR_NAME_OF_YOUR_CONTAINER /bin/bash`
 
-You have to replace `ID_OR_NAME_OF_YOUR_CONTAINER` for  the respective Container ID or Container NAME.
-
+You have to replace `ID_OR_NAME_OF_YOUR_CONTAINER` for  the respective Container ID or Container NAME.  
 Ex: If my container id is f3c99c3239ex then, the command must be:
 
 `$ docker exec -it f3c99c3239ex  /bin/bash`
 
-Inside the terminal you can use the `composer` as you want.
-
+Inside the terminal you can use the `composer` as you want.  
 For example:
 
 `$ composer create-project phpmyadmin/phpmyadmin`
 
-You can use phpmyadmin to made changes in your MySQL Database.
-
+You can use phpmyadmin to made changes in your MySQL Database.  
 For exit of terminal after, the command must be:
 
 `$ exit`
@@ -91,6 +87,5 @@ And you come out of container.
 
 # Enjoy
 
-You can access the server by https://localhost or http://localhost now!
-
+You can access the server by https://localhost or http://localhost now!  
 Put your PHP files in htdocs to access by URL. Have fun =)
