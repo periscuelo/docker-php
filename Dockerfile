@@ -22,6 +22,8 @@ RUN curl -s https://getcomposer.org/installer | php \
   && mv composer.phar /usr/local/bin/composer \
   && chmod +x /usr/local/bin/composer
 
+RUN composer global require phpunit/phpunit
+
 RUN openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/ssl/private/ssl-cert-snakeoil.key -out /etc/ssl/certs/ssl-cert-snakeoil.pem -subj "/C=BR/ST=Sao Paulo/L=Sao Paulo/O=Security/OU=Development/CN=localhost"
 
 RUN a2enmod rewrite
