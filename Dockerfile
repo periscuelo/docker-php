@@ -20,9 +20,9 @@ ENV COMPOSER_ALLOW_SUPERUSER 1
 RUN curl -s https://getcomposer.org/installer | php \
   && mv composer.phar /usr/local/bin/composer \
   && chmod +x /usr/local/bin/composer
-  
-RUN curl -sL https://deb.nodesource.com/setup_12.x | bash \
-  && apt-get install nodejs
+
+RUN curl -s https://deb.nodesource.com/setup_12.x | bash \
+  && apt-get install -y nodejs
 
 RUN composer global require phpunit/phpunit
 
