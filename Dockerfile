@@ -5,6 +5,7 @@ RUN requirements="nano cron mariadb-client libonig-dev libpng-dev libmcrypt-dev 
     && apt-get update && apt-get install -y --no-install-recommends $requirements && rm -rf /var/lib/apt/lists/* \
     && docker-php-ext-install pdo pdo_mysql \
     && docker-php-ext-install gd \
+    && docker-php-ext-configure gd --with-freetype --with-jpeg \
     && pecl install mcrypt-1.0.3 \
     && docker-php-ext-enable mcrypt \
     && docker-php-ext-install mbstring \
