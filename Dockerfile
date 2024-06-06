@@ -6,7 +6,7 @@ RUN requirements="nano cron mariadb-client libonig-dev libpng-dev libmcrypt-dev 
     && docker-php-ext-install pdo pdo_mysql \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
     && docker-php-ext-install -j$(nproc) gd \
-    && pecl install mcrypt-1.0.3 \
+    && pecl install mcrypt-1.0.7 \
     && docker-php-ext-enable mcrypt \
     && docker-php-ext-install mbstring \
     && docker-php-ext-install soap \
@@ -20,11 +20,12 @@ RUN requirements="nano cron mariadb-client libonig-dev libpng-dev libmcrypt-dev 
 ENV COMPOSER_HOME /composer
 ENV PATH /composer/vendor/bin:$PATH
 ENV COMPOSER_ALLOW_SUPERUSER 1
+ENV COMPOSER_VERSION 2.7.6
 RUN curl -s https://getcomposer.org/installer | php \
   && mv composer.phar /usr/local/bin/composer \
   && chmod +x /usr/local/bin/composer
 
-RUN curl -s https://deb.nodesource.com/setup_12.x | bash \
+RUN curl -s https://deb.nodesource.com/setup_20.x | bash \
   && apt-get install -y nodejs
 
 RUN composer global require phpunit/phpunit
