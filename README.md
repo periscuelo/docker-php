@@ -48,8 +48,6 @@ Now you are ready for the next step.
 
 ```
 # docker-compose.yml
-version: '3'
-
 services:
   webserver:
     image: periscuelo/php-apache-ssl
