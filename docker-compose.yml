@@ -1,10 +1,9 @@
-version: '3'
-
 services:
   webserver:
     image: periscuelo/php-apache-ssl
     ports:
       - 80:80
+      - 8080:8080
       - 443:443
     volumes:
       - ./htdocs:/var/www/html

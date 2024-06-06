@@ -37,4 +37,5 @@ RUN a2ensite default-ssl
 RUN a2enmod ssl
 
 EXPOSE 80
+EXPOSE 8080
 EXPOSE 443

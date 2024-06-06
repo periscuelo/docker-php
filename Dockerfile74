@@ -1,12 +1,12 @@
-FROM php:7.3-apache
+FROM php:7.4-apache
 LABEL maintainer="Periscuelo"
 
-RUN requirements="nano cron mariadb-client libpng-dev libmcrypt-dev libmcrypt4 libcurl3-dev libzip-dev unzip libxml2-dev libfreetype6 libjpeg62-turbo libfreetype6-dev libjpeg62-turbo-dev" \
+RUN requirements="nano cron mariadb-client libpng-dev libmcrypt-dev libmcrypt4 libonig-dev libcurl3-dev libzip-dev unzip libxml2-dev libfreetype6 libjpeg62-turbo libfreetype6-dev libjpeg62-turbo-dev" \
     && apt-get update && apt-get install -y --no-install-recommends $requirements && rm -rf /var/lib/apt/lists/* \
     && docker-php-ext-install pdo pdo_mysql \
-    && docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
+    && docker-php-ext-configure gd --with-freetype=/usr/include/ --with-jpeg=/usr/include/ \
     && docker-php-ext-install gd \
-    && pecl install mcrypt-1.0.3 \
+    && pecl install mcrypt-1.0.7 \
     && docker-php-ext-enable mcrypt \
     && docker-php-ext-install mbstring \
     && docker-php-ext-install soap \
@@ -20,11 +20,12 @@ RUN requirements="nano cron mariadb-client libpng-dev libmcrypt-dev libmcrypt4 l
 ENV COMPOSER_HOME /composer
 ENV PATH /composer/vendor/bin:$PATH
 ENV COMPOSER_ALLOW_SUPERUSER 1
-RUN curl -s https://getcomposer.org/installer | php \
+RUN curl -s https://getcomposer.org/installer | php -- \
+  --version=1.10.27 \
   && mv composer.phar /usr/local/bin/composer \
   && chmod +x /usr/local/bin/composer
 
-RUN curl -s https://deb.nodesource.com/setup_12.x | bash \
+RUN curl -s https://deb.nodesource.com/setup_20.x | bash \
   && apt-get install -y nodejs
 
 RUN composer global require phpunit/phpunit
@@ -36,4 +37,5 @@ RUN a2ensite default-ssl
 RUN a2enmod ssl
 
 EXPOSE 80
+EXPOSE 8080
 EXPOSE 443
